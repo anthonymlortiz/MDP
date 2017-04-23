@@ -1,11 +1,16 @@
+import java.util.ArrayList;
 
 public class Action {
     
-    ActionEnum actionTaken;
-    ArrayList<Transition> transition;
+    ArrayList<MDPStates> transition;
     
-    public Action(ActionEnum actionTaken) {
-        this.actionTaken = actionTaken;
-        transition = new ArrayList<Transition>;
+    public Action(MDPStates goalState) {
+        transition = new ArrayList<MDPStates>();
+        transition.add(goalState);
     }
+    
+    public void addTransition(MDPStates goalState) {
+        transition.add(goalState);
+    }
+    
 }
