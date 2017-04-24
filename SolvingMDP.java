@@ -7,7 +7,7 @@ package mdp;
 
 /**
  *
- * @author Anthony
+ * @author Anthony && Jerry Uranga
  */
 import java.util.ArrayList;
 import java.util.*;
@@ -52,7 +52,8 @@ public class SolvingMDP {
     public static void main(String[] args) {
         MarkovDecisionProcess MDP = new MarkovDecisionProcess();
         MDP.initiateMDP();
-        monteCarloMethod(MDP);
+        monteCarloMethod(MDP, 50);
     }
 
 }
+

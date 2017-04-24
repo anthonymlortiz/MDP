@@ -45,8 +45,7 @@ public class MarkovDecisionProcess {
             actions[i] = new Action(i);
         }
         reachableStates = new Vector(totalStates);
-        
-
+  
     }
     
     public void initiateMDP() { // HardCoded MDP from HW
@@ -109,49 +108,6 @@ public class MarkovDecisionProcess {
         actionTable[9][0][10] = new Transition(9,0,1/3, allStates[10], 3);
         actionTable[9][1][10] = new Transition(9,1,1/3, allStates[10], 3);
         actionTable[9][2][10] = new Transition(9,2,1/3, allStates[10], 3);
-        
-        
-        
-        /*state[0].addAction(new Transition(1/3, allStates[1], 2));
-        state[0].addAction(new Transition(1/3, allStates[2], 0));
-        state[0].addAction(new Transition(1/3, allStates[3], -1));
-        
-        state[1].addAction(new Transition(1/2, allStates[7], 2));
-        state[1].addAction(new Transition(1/2, allStates[4], 0));
-        
-        state[2].addAction(new Transition(1/6, allStates[4], 2));
-        state[2].addActionToIndex(0, new Transition(1/6, allStates[7], 2));
-        state[2].addAction(new Transition(1/3, allStates[4], 0));
-        state[2].addAction(new Transition(1/3, allStates[5], -1);
-        
-        state[3].addAction(new Transition(2, 0.5, 5));
-        state[3].addActionToIndex(0, new Transition(2, 0.5, 8));
-        state[3].addAction(new Transition(0, 1.0, 5));
-        
-        state[4].addAction(new Transition(2, 1.0, 6));
-        state[4].addAction(new Transition(0, 10, 7));
-        state[4].addAction(new Transition(-1, 1.0, 8));
-        
-        state[5].addAction(new Transition(2, 1.0, 9));
-        state[5].addAction(new Transition(0, 1.0, 8));
-        
-        state[6].addAction(new Transition(-1, 1.0, 10));
-        state[6].addAction(new Transition(-1, 1.0, 10));
-        state[6].addAction(new Transition(-1, 1.0, 10));
-        
-        state[7].addAction(new Transition(0, 1.0, 10));
-        state[7].addAction(new Transition(0, 1.0, 10));
-        state[7].addAction(new Transition(0, 1.0, 10));
-        
-        state[8].addAction(new Transition(4, 1.0, 10));
-        state[8].addAction(new Transition(4, 1.0, 10));
-        state[8].addAction(new Transition(4, 1.0, 10));
-        
-        state[9].addAction(new Transition(3, 1.0, 10));
-        state[9].addAction(new Transition(3, 1.0, 10));
-        state[9].addAction(new Transition(3, 1.0, 10));
-        */
-
     }
     
     public void printPaths(){        
@@ -167,12 +123,21 @@ public class MarkovDecisionProcess {
         
     }
     
+    public void printPath(int index){
+        System.out.print("InitialState: " + getStartState().getIndex() + " ");        
+        for(int i=0; i< this.paths.get(index).pathTransitions.size(); i++){  
+            System.out.println("ActionTaken: " + paths.get(index).pathTransitions.get(i).getActionIndex()); 
+            System.out.println("NextState: " + paths.get(index).pathTransitions.get(i).nextState.getIndex());
+        }
+           System.out.println("Path Reward: " + paths.get(i).getReward());
+    }
+    
     public MDPStates getStartState() {
         currentStateIndex = 0;
         return (MDPStates)reachableStates.get(0);//maybe reachable states
     }
     
-    public int getReachaleSize(){
+    public int getReachableSize(){
         return this.nbReachableStates;
     }
     
@@ -182,18 +147,20 @@ public class MarkovDecisionProcess {
         return allStates[index];//maybe reachable states
     }
     
-     public MDPStates getNextState(){
-         currentStateIndex ++;
-         if(currentStateIndex == nbReachableStates)
-             return null;
-         else
-             return (MDPStates)reachableStates.get(currentStateIndex);
-     }
+    public MDPStates getNextState(){
+        currentStateIndex ++;
+        if(currentStateIndex == nbReachableStates)
+            return null;
+        else
+            return (MDPStates)reachableStates.get(currentStateIndex);
+    }
     
     public void generateProperPolicy(){
        
         
     }
+    
+    //public double 
     
     public void addPath() {  
         //this.code += code;
@@ -206,6 +173,15 @@ public class MarkovDecisionProcess {
     
     public void decryptCode() {
         
+    }
+    
+    public void updateValues(Path path, double learningRate ) {
+        for(int i = 0; i < path.get(path.size()); i++) {
+            Transition temp = path.get(path.size()).pathTransitions.get(i);
+            MDPStates state = temp.nextState;
+            state.utility += learningRate(temp.reward - state.utility); // MonteCarlo Update
+        }
+        printPath(path.get(path.size()));
     }
     
     // 0 = RU 8pm, 1 = TU 10pm, 2 = RU 10pm, 3 = RD 10pm
