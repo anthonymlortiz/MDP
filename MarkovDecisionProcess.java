@@ -16,7 +16,7 @@ public class MarkovDecisionProcess {
     Double[][] epochTable; //sumOfRewards
     Transition[][][] actionTable;
     int totalStates;
-    Path path;
+    ArrayList<Path> path;
     int actionsPossible;
     public MDPStates [] allStates;
     Action[] actions;
@@ -56,14 +56,7 @@ public class MarkovDecisionProcess {
         // 4 = RU 8am, 5 = RD 8am, 6 = TU 10am, 7 = RU 10am, 8 = RD 10am, 9 = TD 10am
         // 10 = 11AM 
         */
-        
 
-        
-        
-        
-        
-        
-        
         /*allStates[0] = new MDPStates(0); //RU 8pm
         allStates[1] = new MDPStates(1);
         allStates[2] = new MDPStates(2);
