@@ -16,7 +16,7 @@ public class MarkovDecisionProcess {
     Double[][] epochTable; //sumOfRewards
     Transition[][][] actionTable;
     int totalStates;
-    ArrayList<Transition> path;
+    Path path;
     int actionsPossible;
     public MDPStates [] allStates;
     Action[] actions;
