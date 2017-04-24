@@ -1,9 +1,17 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package mdp;
 import java.util.ArrayList;
 
+/**
+ *
+ * @author Anthony Ortiz && Jerry Uranga
+ */
 public class MDPStates {
-    
-    ActionEnum actionTaken;
-    private int index;
+   private int index;
     private double utility;
     private Action action;
     boolean[] actionTaken = new boolean[4];
@@ -14,7 +22,7 @@ public class MDPStates {
         this.index = index;
         this.utility = utility;
         this.terminate = false;
-        this.visited = false
+        this.visited = false;
         this.action = null;
         for (int i = 0 ; i<4; i++){
             actionTaken[i] = false;
@@ -24,7 +32,7 @@ public class MDPStates {
     public MDPStates( int index) {
         this.index = index;
         this.terminate = false;
-        this.visited = false
+        this.visited = false;
         this.action = null;
         for (int i = 0 ; i<4; i++){
             actionTaken[i] = false;
@@ -44,7 +52,7 @@ public class MDPStates {
     }
     
     public Action getAction(int index) {
-        return action.get(index);
+        return this.action;
     }
     
     public double getUtility() {
@@ -59,8 +67,8 @@ public class MDPStates {
     public void setUtility(double utility) {
         this.utility = utility;
     }
-    
-    public void addAction(MDPStates goalState) {
+    /*
+    public void addAction(int actionIndex) {
         action.add(new Action(goalState));
     }
     
@@ -68,5 +76,6 @@ public class MDPStates {
         Action transition = action.get(index);
         transition.addTransition(goalState);
     }
+    */
     
 }

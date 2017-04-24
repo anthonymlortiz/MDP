@@ -1,6 +1,17 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package mdp;
 
+/**
+ *
+ * @author Anthony
+ */
+import java.util.ArrayList;
 public class Transition {
-    private double probability
+    private double probability;
     MDPStates nextState;
     private double reward;
     
@@ -20,10 +31,11 @@ public class Transition {
     }
     
     public double getReward(){
-        return reward
+        return reward;
     }
     
     public void setReward(double reward){
         this.reward = reward;
     }
+    
 }

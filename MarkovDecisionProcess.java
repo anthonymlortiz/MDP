@@ -1,14 +1,24 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package mdp;
 import java.util.ArrayList;
+import java.util.*;
 
+/**
+ *
+ * @author Anthony
+ */
 public class MarkovDecisionProcess {
-    
-    int rows, columns;
+   int rows, columns;
     Double[][] epochTable; //sumOfRewards
     Transition[][][] actionTable;
     int totalStates;
     ArrayList<Transition> path;
     int actionsPossible;
-    public MDPStates [] allStates; new MDPStates[totalStates];
+    public MDPStates [] allStates;
     Action[] actions;
     int nbReachableStates = 0;
     Vector reachableStates;
@@ -174,46 +184,7 @@ public class MarkovDecisionProcess {
      }
     
     public void generateProperPolicy(){
-        
-        Stack stack = new Stack();
-        for(MSPStates s=getStartState(); s!= null; s=getNextState() ){
-            stack.push(s);
-            while(!stack.empty()){
-                MSPStates currentState = (MDPStates) stack.peek();
-                currentState.visited = true;
-                
-                for(int a=0; a<actionsPossible; a++){
-                    if(currentState.actionTaken[a])
-                        continue;
-                    currentState.actionTaken[a] = true;
-                    
-                    State nextState = transit(currentState, a);
-                    if(nextState.terminate){
-                        currentState.action = action[a];
-                        stack.pop();
-                        break;
-                    }
-                    else if(nextState.visited)
-                        continue;
-                    else{
-                        currentState.action = action[a]
-                        stack.push(nextState);
-                        break;
-                    }
-                    if(a==4){
-                        currentState.visited = false;
-                        for(int i=0; i<actionsPossible; i++)
-                            currentState.actionTaken[i] = false;
-                        stack.pop();
-                    }
-                        
-                }
-            }
-        }
-        
-    }
-    
-    public MDPStates transit(MDPStates s, Action a){
+       
         
     }
     
@@ -222,7 +193,8 @@ public class MarkovDecisionProcess {
     }
     
     public Action getRandomAction(){
-        int a = (int) Math.round(Math.random()* actionsPossible -0.5)
+        int a = (int) Math.round(Math.random()* actionsPossible -0.5);
+        return new Action(a);
     }
     
     public void decryptCode() {
@@ -231,5 +203,5 @@ public class MarkovDecisionProcess {
     // 0 = RU 8pm, 1 = TU 10pm, 2 = RU 10pm, 3 = RD 10pm
     // 4 = RU 8am, 5 = RD 8am, 6 = TU 10am, 7 = RU 10am, 8 = RD 10am, 9 = TD 10am
     // 10 = w/e at 11AM
-
+    
 }
