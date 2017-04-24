@@ -7,7 +7,7 @@ package mdp;
 
 /**
  *
- * @author Anthony
+ * @author Anthony && Jerry Uranga
  */
 import java.util.ArrayList;
 public class Path {

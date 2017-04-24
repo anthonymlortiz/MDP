@@ -9,7 +9,7 @@ import java.util.*;
 
 /**
  *
- * @author Anthony
+ * @author Anthony && Jerry Uranga
  */
 public class MarkovDecisionProcess {
    int rows, columns;
