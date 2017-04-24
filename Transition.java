@@ -7,11 +7,7 @@ package mdp;
 
 /**
  *
-<<<<<<< HEAD
- * @author Anthony && Jerry Uranga
-=======
  * @author Anthony Ortiz && Jerry Uranga
->>>>>>> 01d14b8be6233559d3e355d8399df344f0144310
  */
 import java.util.ArrayList;
 public class Transition {

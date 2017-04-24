@@ -9,11 +9,7 @@ import java.util.*;
 
 /**
  *
-<<<<<<< HEAD
- * @author Anthony && Jerry Uranga
-=======
  * @author Anthony Ortiz && Jerry Uranga
->>>>>>> 01d14b8be6233559d3e355d8399df344f0144310
  */
 public class MarkovDecisionProcess {
    int rows, columns;
@@ -28,7 +24,7 @@ public class MarkovDecisionProcess {
     Vector reachableStates;
     int currentStateIndex;
     int currentAction;
-    int epoch = 0;
+    
     double gamma = 1.0;
     
     
@@ -157,12 +153,15 @@ public class MarkovDecisionProcess {
 
     }
     
-    public void printPath(){
-        
+    public void printPaths(){        
         for(int i=0; i< this.paths.size(); i++){
-           System.out.print("State: " + getStartState().getIndex() + " ");
-           for(int j = 0; j< this.paths.get(i).pathTransitions.size(); j++)
-           System.out.print("Action: " + getStartState().getIndex() + " "); 
+           System.out.print(" State: " + getStartState().getIndex() + " ");
+           for(int j = 0; j< this.paths.get(i).pathTransitions.size(); j++){
+              System.out.print("Action: " + paths.get(i).pathTransitions.get(j).getActionIndex() + " "); 
+              System.out.print("State: " + paths.get(i).pathTransitions.get(j).nextState.getIndex()+ " ");
+           }
+           System.out.print("Path Reward: " + paths.get(i).getReward());
+           System.out.println();
         }
         
     }
