@@ -120,7 +120,20 @@ public class MarkovDecisionProcess {
            System.out.print("Path Reward: " + paths.get(i).getReward());
            System.out.println();
         }
-        
+    }
+    
+    public void printTable() {
+        double[] averageReward = new double[epochTable.length];
+        for(int i = 0; i < epochTable[0].length; i++) {
+            averageReward[i] += epochTable[i][j];
+            for(int j = 0; j < epochTable.length; j++) 
+                System.out.print(epochTable[i][j] + " ");
+            }
+            System.out.println();
+        }
+        System.out.println();
+        for(int i = 0; i < averageReward.length; i++)
+            System.out.println("Average reward for path " + i + (averageReward[i]/epochTable.length));
     }
     
     public void printPath(int index){
@@ -175,13 +188,19 @@ public class MarkovDecisionProcess {
         
     }
     
-    public void updateValues(Path path, double learningRate ) {
-        for(int i = 0; i < path.get(path.size()); i++) {
-            Transition temp = path.get(path.size()).pathTransitions.get(i);
-            MDPStates state = temp.nextState;
-            state.utility += learningRate(temp.reward - state.utility); // MonteCarlo Update
+    public void updateValues(Path path, double learningRate ) { // path.size = 1 
+        int pathIndex = path.get(path.size());
+        for(int i = 0; i < pathIndex.pathTransitions.size(); i++) {
+            Transition temp = pathIndex.pathTransitions.get(i);
+            pathIndex.setReward(pathIndex.getReward() + temp.reward);
         }
-        printPath(path.get(path.size()));
+        for(int i = 0; i < pathIndex.pathTransitions.size(); i++) {
+            Transition temp = pathIndex.pathTransitions.get(i);
+            MDPStates state = temp.nextState;
+            state.setUtility(state.getUtility + learningRate(pathIndex.getReward() - state.getUtility())); // MonteCarlo Update
+            epochTable[state.getIndex()][epoch] = state.getUtility();
+        }
+        printPath(pathIndex);
     }
     
     // 0 = RU 8pm, 1 = TU 10pm, 2 = RU 10pm, 3 = RD 10pm

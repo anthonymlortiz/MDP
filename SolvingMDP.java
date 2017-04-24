@@ -41,7 +41,7 @@ public class SolvingMDP {
             MDP.paths.get(epoch).pathTransitions.add(MDP.actionTable[index][rA.get(indexA)][rT.get(indexT)]);
                 if (MDP.paths.get(epoch).pathTransitions.get(MDP.paths.get(epoch).pathTransitions.size()-1).nextState.terminate)
                     index = 0;
-                    //updateValues method goes here
+                    MDP.updateValues(MDP.paths.get(epoch), .1);
                     ++epoch;
           }
             index = rT.get(indexT);
