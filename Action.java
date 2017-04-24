@@ -2,14 +2,16 @@ import java.util.ArrayList;
 
 public class Action {
     
-    ArrayList<MDPStates> transition;
+    ArrayList<Transition> transitions;
+    int index;
+    int actionCode;
     
-    public Action(MDPStates goalState) {
-        transition = new ArrayList<MDPStates>();
+    public Action(Transition goalState) {
+        transition = new ArrayList<Transition>();
         transition.add(goalState);
     }
     
-    public void addTransition(MDPStates goalState) {
+    public void addTransition(Transition goalState) {
         transition.add(goalState);
     }
     

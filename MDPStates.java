@@ -4,24 +4,39 @@ public class MDPStates {
     
     ActionEnum actionTaken;
     private int index;
-    private int reward;
-    private double probability;
     private double utility;
-    private ArrayList<Action> action;
+    private Action action;
+    boolean[] actionTaken = new boolean[4];
+    boolean terminate;
+    boolean visited;
     
-    public MDPStates(int reward, double probability, int index, double utility) {
-        this.reward = reward;
-        this.probability = probability;
+    public MDPStates( int index, double utility) {
         this.index = index;
         this.utility = utility;
-        action = new ArrayList<Action>();
+        this.terminate = false;
+        this.visited = false
+        this.action = null;
+        for (int i = 0 ; i<4; i++){
+            actionTaken[i] = false;
+        }
     }
     
-    public MDPStates(int reward, double probability, int index) {
-        this.reward = reward;
-        this.probability = probability;
+    public MDPStates( int index) {
         this.index = index;
-        action = new ArrayList<Action>();
+        this.terminate = false;
+        this.visited = false
+        this.action = null;
+        for (int i = 0 ; i<4; i++){
+            actionTaken[i] = false;
+        }
+    }
+    
+    public void setTerminate(){
+        this.terminate = true;
+    }
+    
+    public boolean isVisited(){
+        return this.visited;
     }
     
     public int getIndex() {
@@ -32,14 +47,6 @@ public class MDPStates {
         return action.get(index);
     }
     
-    public int getReward() {
-        return reward;
-    }
-    
-    public double getProbability() {
-        return probability;
-    }
-    
     public double getUtility() {
         return utility;
     }
@@ -48,13 +55,6 @@ public class MDPStates {
         this.index = index;
     }
     
-    public void setReward(int reward) {
-        this.reward = reward;
-    } 
-    
-    public void setProbability(double probability) {
-        this.probability = probability;
-    }
     
     public void setUtility(double utility) {
         this.utility = utility;

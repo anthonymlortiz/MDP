@@ -1,11 +1,20 @@
-/*
-    00 = RU     00 = 8 PM
-    01 = RD     01 = 10 PM
-    10 = TU     10 = 8 AM
-    11 = TD     11 = 11 AM
 
-*/
 
 public class SolvingMDP {
+    
+    public void monteCarloMethod(MarkovDecisionProcess MDP) {
+        int index = 0;
+        MDPStates tree = MDP.getTree();
+        while(index < 10) {
+            
+        }
+        
+    }
+    
+    public static void main(String[] args) {
+        MarkovDecisionProcess MDP = new MarkovDecisionProcess();
+        MDP.initiateMDP();
+        monteCarloMethod(MDP);
+    }
 
 }
