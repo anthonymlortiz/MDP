@@ -40,6 +40,7 @@ public class MarkovDecisionProcess {
         actionTable = new Transition[totalStates][actionsPossible][totalStates];
         actions = new Action[actionsPossible]; //4
         allStates =  new MDPStates[totalStates];
+        paths = new ArrayList<Path>();
         for(int i = 0; i<actionsPossible; i++ ){
             actions[i] = new Action(i);
         }
