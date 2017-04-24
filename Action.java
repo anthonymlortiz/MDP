@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Anthony
+ * @author Anthony Ortiz && Jerry Uranga
  */
 public class Action {
     //ArrayList<Transition> transitions;

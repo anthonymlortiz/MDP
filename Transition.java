@@ -7,18 +7,34 @@ package mdp;
 
 /**
  *
+<<<<<<< HEAD
  * @author Anthony && Jerry Uranga
+=======
+ * @author Anthony Ortiz && Jerry Uranga
+>>>>>>> 01d14b8be6233559d3e355d8399df344f0144310
  */
 import java.util.ArrayList;
 public class Transition {
+    private int actionIndex;
+    private int sourceStateIndex;
     private double probability;
     MDPStates nextState;
     private double reward;
     
-    public Transition(double probability, MDPStates nextState, double reward) {
+    public Transition(int actionIndex, int sourceStateIndex, double probability, MDPStates nextState, double reward) {
+        this.actionIndex = actionIndex;
+        this.sourceStateIndex = sourceStateIndex;
         this.nextState = nextState;
         this.probability = probability;
         this.reward = reward;
+    }
+    
+    public int getActionIndex(){
+        return this.actionIndex;
+    }
+    
+    public int getSourceStateIndex(){
+        return this.sourceStateIndex;
     }
     
     public double getProbability() {

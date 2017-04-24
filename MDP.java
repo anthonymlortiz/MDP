@@ -7,7 +7,7 @@ package mdp;
 
 /**
  *
- * @author Anthony
+ * @author Anthony Ortiz && Jerry Uranga
  */
 public class MDP {
 
