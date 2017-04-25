@@ -12,8 +12,9 @@ import java.util.*;
  * @author Anthony Ortiz && Jerry Uranga
  */
 public class MarkovDecisionProcess {
-   int rows, columns;
+    int rows, columns;
     double[][] epochTable; //sumOfRewards
+    double[] QValues;
     Transition[][][] actionTable;
     int totalStates;
     ArrayList<Path> paths;
@@ -42,13 +43,12 @@ public class MarkovDecisionProcess {
         actions = new Action[actionsPossible]; //4
         allStates =  new MDPStates[totalStates];
         paths = new ArrayList<Path>();
+        QValues = new double [totalStates];
         for(int i = 0; i<actionsPossible; i++ ){
             actions[i] = new Action(i);
         }
         reachableStates = new Vector(totalStates);
         transitions = new ArrayList<Transition>();
-        
-
     }
     
     public void initiateMDP() { // HardCoded MDP from HW
@@ -249,20 +249,40 @@ public class MarkovDecisionProcess {
     
     public void generateProperPolicy(){
        
-        
     }
     
-    public void addPath() {  
-        //this.code += code;
+    public void printQValues() {
+        for(int i =0; i < QValues.length; i++) 
+            System.out.println("QValue for State: " + i + " is " + QValue[i]);
+    }
+    
+    public void printQPolicy() {
+        double worstValue = 1;
+        int index = 0;
+        int prevIndex = index;
+        int action = 0;
+        while (index < totalStates) {
+            prevIndex = index;
+            for(int j = 0; j < actions.length; j++) {
+                for(int k = 0; k < totalStates; k++) {
+                    if (decisionTable[i][j][k] != null) {
+                        if (QValue[k] < worstValue) {
+                            worstValue = QValue[k];
+                            index = k;
+                            action = j;
+                        }
+                    }
+                }
+            }
+            if (index == prevIndex) //goalState reached
+                return;
+            System.out.println("From state: " + prevIndex + " take action " + action + " to state: " + index);
+        }
     }
     
     public Action getRandomAction(){
         int a = (int) Math.round(Math.random()* actionsPossible -0.5);
         return new Action(a);
-    }
-    
-    public void decryptCode() {
-        
     }
     
     public void setGamma(double gamma){
@@ -320,4 +340,5 @@ public class MarkovDecisionProcess {
 		
         s.setAction(a);
     }
+    
 }
