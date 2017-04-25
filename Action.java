@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class Action {
     //ArrayList<Transition> transitions;
     int index;
-    int actionCode;
+    String actionCode;
     
     /*public Action(Transition goalState) {
         transitions = new ArrayList<Transition>();
@@ -22,6 +22,17 @@ public class Action {
     */
     public Action(int index) {
         this.index = index;
+        if(index == 0)
+            actionCode = "P";
+        else if(index == 1)
+            actionCode = "R";
+        else
+            actionCode = "S";
+    }
+    
+    public Action(int index, String actionCode) {
+        this.index = index;
+        this.actionCode = actionCode;
     }
     /*
     public void addTransition(Transition goalState) {

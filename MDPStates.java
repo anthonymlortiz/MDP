@@ -11,12 +11,14 @@ import java.util.ArrayList;
  * @author Anthony Ortiz && Jerry Uranga
  */
 public class MDPStates {
-   private int index;
+    private int index;
     private double utility;
+    private double reward;
     private Action action;
     boolean[] actionTaken = new boolean[4];
     boolean terminate;
     boolean visited;
+    private String stateCode;
     
     public MDPStates( int index, double utility) {
         this.index = index;
@@ -34,14 +36,18 @@ public class MDPStates {
         this.terminate = false;
         this.visited = false;
         this.action = null;
-        for (int i = 0 ; i<4; i++){
-            actionTaken[i] = false;
-        }
     }
+    
+    
     
     public void setTerminate(){
         this.terminate = true;
     }
+    
+    public void setStateCode(String stateCode){
+       this.stateCode = stateCode;
+    }
+    
     
     public boolean isVisited(){
         return this.visited;
@@ -56,7 +62,11 @@ public class MDPStates {
     }
     
     public double getUtility() {
-        return utility;
+        return this.utility;
+    }
+    
+    public double getReward(){
+        return this.reward;
     }
     
     public void setIndex(int index) {
@@ -67,6 +77,17 @@ public class MDPStates {
     public void setUtility(double utility) {
         this.utility = utility;
     }
+    
+    public void setAction(Action action){
+        this.action = action;
+    }
+    public void setReward(double reward){
+        this.reward = reward;
+    }
+    public String getStateCode(){
+       return this.stateCode;
+    }
+    
     /*
     public void addAction(int actionIndex) {
         action.add(new Action(goalState));

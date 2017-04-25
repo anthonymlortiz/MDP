@@ -19,7 +19,7 @@ public class Path {
     public Path(Transition trans){
         pathTransitions = new ArrayList<Transition>();
         this.pathTransitions.add(trans);
-        this.reward = this.reward + trans.getReward();
+//        this.reward = this.reward + trans.getReward();
     }
     
     public void setReward(double reward){

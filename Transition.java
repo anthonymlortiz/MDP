@@ -17,7 +17,7 @@ public class Transition {
     MDPStates nextState;
     private double reward;
     
-    public Transition(int actionIndex, int sourceStateIndex, double probability, MDPStates nextState, double reward) {
+    public Transition(int sourceStateIndex, int actionIndex, double probability, MDPStates nextState, double reward) {
         this.actionIndex = actionIndex;
         this.sourceStateIndex = sourceStateIndex;
         this.nextState = nextState;
@@ -43,7 +43,7 @@ public class Transition {
     }
     
     public double getReward(){
-        return reward;
+        return this.reward;
     }
     
     public void setReward(double reward){
